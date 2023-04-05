@@ -17,8 +17,24 @@ const commentSlice = createSlice({
     name: 'comment',
     initialState,
     reducers: {
-
+        onClickLikeBtn: (state, action) => {
+            const commentIndex = action.payload.commentIndex;
+            const newData = state.data.map((value, index) => {
+                if (index === commentIndex) {
+                    value.like = !value.like;
+                }
+                return value;
+            });
+            state.data = newData;
+        },
+        addComment: (state, action) => {
+            const user = action.payload.user;
+            const comment = action.payload.comment;
+            const newData = state.data.concat({ name: user.name, like: false, isOpenReplyInput: false, isReply: false, comment: comment, reply: [] })
+            state.data = newData;
+        },
     }
 });
 
+export const { addComment, onClickLikeBtn } = commentSlice.actions;
 export default commentSlice.reducer;
