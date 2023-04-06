@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/hooks";
 import { CommentInputLineProps } from "../types/types";
-import { addComment } from "../redux/slices/commentSlice";
+import { addComment, addReply } from "../redux/slices/commentSlice";
 
 function CommentInputLine(props: CommentInputLineProps) {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(state => state.user.name);
+    const user = useAppSelector(state => state.user.user);
     const className = props.className;
+    const commentIndex = props.commentIndex;
     const [inputText, setInputText] = useState<string>();
 
     return (
@@ -15,7 +16,7 @@ function CommentInputLine(props: CommentInputLineProps) {
             <input autoFocus value={inputText} onChange={(e) => setInputText(e.target.value)} className={`${className}__input`} />
             <button
                 onClick={() => {
-                    dispatch(addComment({ user, comment: inputText }));
+                    (commentIndex !== null && commentIndex !== undefined) ? dispatch(addReply({ comment: inputText, user, commentIndex })) : dispatch(addComment({ comment: inputText, user }));
                     setInputText("");
                 }}
                 className={`${className}__send-btn`}
