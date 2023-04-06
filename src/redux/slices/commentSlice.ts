@@ -33,8 +33,32 @@ const commentSlice = createSlice({
             const newData = state.data.concat({ name: user.name, like: false, isOpenReplyInput: false, isReply: false, comment: comment, reply: [] })
             state.data = newData;
         },
+        onClickReplyBtn: (state, action) => {
+            const commentIndex = action.payload.commentIndex;
+            const newData = state.data.map((value, index) => {
+                if (index === commentIndex) {
+                    value.isOpenReplyInput = !value.isOpenReplyInput;
+                } else {
+                    value.isOpenReplyInput = false;
+                }
+                return value;
+            });
+            state.data = newData;
+        },
+        addReply: (state, action) => {
+            const user = action.payload.user;
+            const commentIndex = action.payload.commentIndex;
+            const comment = action.payload.comment;
+            const newData = state.data.map((value, index) => {
+                if (index === commentIndex) {
+                    value.reply.push({ name: user.name, like: false, isOpenReplyInput: false, isReply: true, comment: comment, reply: [] })
+                }
+                return value;
+            });
+            state.data = newData;
+        },
     }
 });
 
-export const { addComment, onClickLikeBtn } = commentSlice.actions;
+export const { addComment, onClickLikeBtn, addReply, onClickReplyBtn } = commentSlice.actions;
 export default commentSlice.reducer;
