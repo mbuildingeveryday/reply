@@ -42,11 +42,129 @@ table {
 	border-spacing: 0;
 }
 
+$input-line-main-color: #eee;
+
 .App {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
+.comment {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 40%;
+	height: 70%;
+	border-radius: 10px;
+	box-shadow: #777 0px 0px 10px;
+	background-color: white;
+}
+
+.comment-list {
+	flex: 1;
+	&__container {
+		padding: 15px;
+		overflow: scroll;
+	}
+	&__li {
+		list-style: none;
+		&--reply {
+			list-style: none;
+			margin-left: 20px;
+		}
+		&-main {
+			border-radius: 10px;
+			padding: 15px;
+			margin: 0px 0px 10px 0px;
+			background-color: #eee;
+			&-title {
+				&-container {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					margin-bottom: 10px;
+				}
+				font-weight: 700;
+			}
+			&-des {
+				margin-bottom: 10px;
+			}
+			&-btns {
+				display: flex;
+				justify-content: space-between;
+			}
+		}
+		&:last-child {
+			margin: 0;
+		}
+		&-like-btn {
+			cursor: pointer;
+			border-style: none;
+			&--liked {
+				cursor: pointer;
+				border-style: none;
+				color: rgb(38, 96, 219);
+			}
+		}
+		&-reply-btn {
+			cursor: pointer;
+			border-style: none;
+		}
+		&-edit-btn {
+			cursor: pointer;
+			border-style: none;
+		}
+	}
+}
+
+.input-line {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: $input-line-main-color;
+	&__input {
+		flex: 1;
+		height: 30px;
+		border-radius: 15px;
+		border-width: 0;
+		margin: 0px 10px 0px 10px;
+		padding: 0px 15px;
+		background-color: $input-line-main-color;
+	}
+	&__input:focus {
+		outline: none;
+	}
+	&__profile-img {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+	&__send-btn {
+		border-style: none;
+		padding: 6px 8px;
+		background-color: $input-line-main-color;
+	}
+}
+
+.modal-option {
+	width: 100px;
+	background-color: white;
+	padding: 10px;
+	box-shadow: #777 0px 0px 10px;
+	border-radius: 5px;
+	&__btn {
+		cursor: pointer;
+		border: none;
+		background-color: white;
+	}
+}
+
+.like-img {
+	width: 17px;
+	height: 17px;
+}
