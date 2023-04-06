@@ -103,19 +103,23 @@ $input-line-main-color: #eee;
 		&-like-btn {
 			cursor: pointer;
 			border-style: none;
+			background-color: transparent;
 			&--liked {
 				cursor: pointer;
 				border-style: none;
 				color: rgb(38, 96, 219);
+				background-color: transparent;
 			}
 		}
 		&-reply-btn {
 			cursor: pointer;
 			border-style: none;
+			background-color: transparent;
 		}
 		&-edit-btn {
 			cursor: pointer;
 			border-style: none;
+			background-color: transparent;
 		}
 	}
 }
