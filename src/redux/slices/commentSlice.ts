@@ -16,7 +16,7 @@ const commentSlice = createSlice({
     initialState,
     reducers: {
         onClickLikeBtn: (state, action) => {
-            const commentIndex = action.payload.commentIndex;
+            const commentIndex = action.payload.index;
             const newData = state.data.map((value, index) => {
                 if (index === commentIndex) {
                     value.like = !value.like;
@@ -34,7 +34,7 @@ const commentSlice = createSlice({
             state.data = newData;
         },
         onClickReplyBtn: (state, action) => {
-            const commentIndex = action.payload.commentIndex;
+            const commentIndex = action.payload.index;
             const newData = state.data.map((value, index) => {
                 if (index === commentIndex) {
                     value.isOpenReplyInput = !value.isOpenReplyInput;

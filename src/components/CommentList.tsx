@@ -1,4 +1,3 @@
-import React from "react";
 import { useAppSelector } from "../hooks/hooks";
 import { CommentListProps } from "../types/types";
 import CommentListItem from "./CommentListItem";
@@ -10,7 +9,7 @@ function CommentList(props: CommentListProps) {
     return (
         <div className={`${className}__container`}>
             <ul className={className}>
-                {data.map((value, index) => <CommentListItem key={index + value.comment.slice(0, 5)} index={index} className={`${className}__li`} comment={value} />)}
+                {data.map((value, index) => <CommentListItem key={index + value.comment.slice(0, 5)} currentIndex={index} className={`${className}__li`} comment={value} />)}
             </ul>
         </div>
     )

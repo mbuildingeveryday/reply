@@ -3,14 +3,14 @@ import { useAppDispatch } from "../hooks/hooks";
 import { onClickLikeBtn, onClickReplyBtn } from "../redux/slices/commentSlice";
 import { CommentListItemProps } from "../types/types";
 import CommentInputLine from "./CommentInputLine";
-import ModalOption from "./ModalOption";
+import ModalDelete from "./ModalDelete";
 import Like from "./Like";
 
 function CommentListItem(props: CommentListItemProps) {
     const dispatch = useAppDispatch();
     const className = props.className;
-    const index = props.index;
-    const commentIndex = props.commentIndex;
+    const currentIndex = props.currentIndex;
+    const parentIndex = props.parentIndex;
     const comment = props.comment;
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [displayOption, setDisplayOption] = useState(false);
@@ -23,20 +23,20 @@ function CommentListItem(props: CommentListItemProps) {
     const renderReplies = () => {
         return (
             <ul className={"comment-list"}>
-                {comment.reply.map((value, replyIndex) => <CommentListItem key={replyIndex + value.comment.slice(0, 5)} index={replyIndex} commentIndex={index} className={`comment-list__li`} comment={value} />)}
+                {comment.reply.map((value, replyIndex) => <CommentListItem key={replyIndex + value.comment.slice(0, 5)} parentIndex={currentIndex} currentIndex={replyIndex} className={`comment-list__li`} comment={value} />)}
             </ul>
         )
     }
 
     const renderReplyInput = () => {
         return (
-            <CommentInputLine className="input-line" commentIndex={index} />
+            <CommentInputLine className="input-line" commentIndex={currentIndex} />
         )
     }
 
     return (
         <li className={`${className}${comment.isReply ? "--reply" : ""}`}>
-            <ModalOption index={index} commentIndex={commentIndex} position={position} display={displayOption} setDisplay={setDisplayOption} comment={comment} />
+            <ModalDelete parentIndex={parentIndex} currentIndex={currentIndex} position={position} display={displayOption} setDisplay={setDisplayOption} comment={comment} />
             <div className={`${className}-main`}>
                 <div className={`${className}-main-title-container`}>
                     <span className={`${className}-main-title`}>{comment.name}</span>
@@ -46,8 +46,8 @@ function CommentListItem(props: CommentListItemProps) {
                 {!comment.isReply ?
                     <div className={`${className}-main-btns`}>
                         <div>
-                            <button onClick={() => { dispatch(onClickLikeBtn({ commentIndex: index })) }} className={comment.like ? `${className}-like-btn--liked` : `${className}-like-btn`}>like</button>
-                            <button onClick={() => { dispatch(onClickReplyBtn({ commentIndex: index })) }} className={`${className}-reply-btn`}>reply</button>
+                            <button onClick={() => { dispatch(onClickLikeBtn({ index: currentIndex })) }} className={comment.like ? `${className}-like-btn--liked` : `${className}-like-btn`}>like</button>
+                            <button onClick={() => { dispatch(onClickReplyBtn({ index: currentIndex })) }} className={`${className}-reply-btn`}>reply</button>
                         </div>
                         <Like like={comment.like} />
                     </div>

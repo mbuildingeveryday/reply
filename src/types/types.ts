@@ -22,8 +22,8 @@ export interface CommentListProps {
 
 export interface CommentListItemProps {
     className: string
-    index: number
-    commentIndex?: number
+    currentIndex: number
+    parentIndex?: number
     comment: Comment
 }
 
@@ -32,10 +32,10 @@ export interface LikeProps {
 }
 
 export interface ModalOptionsProps {
-    index: number
+    currentIndex: number
     position: { x: number, y: number }
     display: boolean
     comment: Comment
     setDisplay: React.Dispatch<React.SetStateAction<boolean>>
-    commentIndex?: number
+    parentIndex?: number
 }

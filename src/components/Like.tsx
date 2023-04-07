@@ -1,4 +1,3 @@
-import React from "react";
 import { LikeProps } from "../types/types";
 
 function Like(props: LikeProps) {
