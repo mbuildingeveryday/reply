@@ -4,8 +4,8 @@ import { deleteComment, deleteReply } from "../redux/slices/commentSlice";
 
 function ModalDelete(props: ModalOptionsProps) {
     const dispatch = useAppDispatch();
-    const index = props.currentIndex;
-    const commentIndex = (props.parentIndex !== null && props.parentIndex !== undefined) ? props.parentIndex : -1;
+    const currentIndex = props.currentIndex;
+    const parentIndex = (props.parentIndex !== null && props.parentIndex !== undefined) ? props.parentIndex : -1;
     const position = props.position;
     const display = props.display;
     const comment = props.comment;
@@ -14,7 +14,7 @@ function ModalDelete(props: ModalOptionsProps) {
     return (
         <div className="modal-option" style={{ position: 'absolute', display: display ? 'block' : 'none', left: position.x, top: position.y }}>
             <button onClick={(e) => {
-                comment.isReply ? dispatch(deleteReply({ commentIndex: commentIndex, replyIndex: index })) : dispatch(deleteComment({ commentIndex: index }));
+                comment.isReply ? dispatch(deleteReply({ commentIndex: parentIndex, replyIndex: currentIndex })) : dispatch(deleteComment({ commentIndex: currentIndex }));
                 setDisplay(false);
             }} className="modal-option__btn">
                 삭제
