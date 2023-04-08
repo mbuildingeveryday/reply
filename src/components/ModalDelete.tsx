@@ -5,7 +5,7 @@ import { deleteComment, deleteReply } from "../redux/slices/commentSlice";
 function ModalDelete(props: ModalOptionsProps) {
     const dispatch = useAppDispatch();
     const currentIndex = props.currentIndex;
-    const parentIndex = (props.parentIndex !== null && props.parentIndex !== undefined) ? props.parentIndex : -1;
+    const parentIndex = props.parentIndex;
     const position = props.position;
     const display = props.display;
     const comment = props.comment;

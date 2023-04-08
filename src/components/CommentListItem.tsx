@@ -36,7 +36,7 @@ function CommentListItem(props: CommentListItemProps) {
 
     return (
         <li className={`${className}${comment.isReply ? "--reply" : ""}`}>
-            <ModalDelete parentIndex={parentIndex} currentIndex={currentIndex} position={position} display={displayOption} setDisplay={setDisplayOption} comment={comment} />
+            <ModalDelete parentIndex={comment.isReply ? parentIndex : undefined} currentIndex={currentIndex} position={position} display={displayOption} setDisplay={setDisplayOption} comment={comment} />
             <div className={`${className}-main`}>
                 <div className={`${className}-main-title-container`}>
                     <span className={`${className}-main-title`}>{comment.name}</span>
